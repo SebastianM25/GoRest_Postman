@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "b8e47d04-bc01-426c-9d11-096312bacf83",
+		"name": "GoRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6960125"
+	},
+	"item": [
+		{
+			"name": "Post&Get users_Automation",
+			"item": [
+				{
+					"name": "CreateUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const email = Math.random().toString(36).replace(/[^a-z]+/g,'').substr(6-15);",
+									"pm.globals.set(\"email\",email);",
+									"",
+									"const id=Math.floor((Math.random()*1000)+1);",
+									"pm.globals.set(\"id\",id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0c9c40d945079e2b1f6763d190da596ef3a71d334f79f07902dce75df50ccc99",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n  \"name\": \"SebaTest\",\n  \"email\": \"sebbtest{{email}}@block.io\",\n  \"gender\": \"male\",\n  \"status\": \"inactive\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0c9c40d945079e2b1f6763d190da596ef3a71d334f79f07902dce75df50ccc99",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://gorest.co.in/public/v2/users",
+							"protocol": "https",
+							"host": [
+								"gorest",
+								"co",
+								"in"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
